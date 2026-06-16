@@ -53,7 +53,7 @@ public_users.get("/isbn/:isbn", async function (req, res) {
       });
     };
     const bookData = await getisbn();
-    return res.status(200).json(bookData);
+    return res.status(200).send(JSON.stringify(bookData));
   } catch (errro) {
     return res.status(404).json({ message: errro.message });
   }
@@ -78,7 +78,7 @@ public_users.get("/author/:author", async function (req, res) {
       });
     };
     const matchingBooks = await getBook();
-    return res.status(200).send(JSON({ matchingBooks }));
+    return res.status(200).send(JSON.stringify(matchingBooks));
   } catch (error) {
     return res.status(404).json({ message: error.message });
   }
@@ -103,7 +103,7 @@ public_users.get("/title/:title", async function (req, res) {
     };
 
     const matchingBooks = await getBooksByTitle();
-    return res.status(200).send(JSON.stringify(matchingBooks, null, 4));
+    return res.status(200).send(JSON.stringify(matchingBooks));
   } catch (error) {
     return res.status(404).json({ message: error.message });
   }
@@ -113,7 +113,7 @@ public_users.get("/title/:title", async function (req, res) {
 public_users.get("/review/:isbn", function (req, res) {
   const isbn = req.params.isbn;
   const review = books[isbn].review;
-  res.send(JSON.stringify({ review }), null, 4);
+  res.send(JSON.stringify(review );
 });
 
 module.exports.general = public_users;
