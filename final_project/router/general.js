@@ -113,7 +113,7 @@ public_users.get("/title/:title", async function (req, res) {
 public_users.get("/review/:isbn", function (req, res) {
   const isbn = req.params.isbn;
   const review = books[isbn].review;
-  res.send(JSON.stringify(review );
+  res.send(JSON.stringify(review));
 });
 
 module.exports.general = public_users;

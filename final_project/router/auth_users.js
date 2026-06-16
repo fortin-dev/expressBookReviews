@@ -41,9 +41,7 @@ regd_users.post("/login", (req, res) => {
       accessToken,
       username,
     };
-    return res
-      .status(200)
-      .json({ message: "User successfully logged in", token: accessToken });
+    return res.status(200).json({ message: "Customer successfully logged in" });
   } else {
     return res
       .status(208)
@@ -55,7 +53,7 @@ regd_users.post("/login", (req, res) => {
 regd_users.put("/auth/review/:isbn", (req, res) => {
   //Write your code here
   const isbn = req.params.isbn;
-  const review_text = req.params.review;
+  const review_text = req.query.review;
 
   const username = req.user ? req.user.username : null;
 
@@ -78,7 +76,7 @@ regd_users.put("/auth/review/:isbn", (req, res) => {
     books[isbn].reviews[username] = review_text;
 
     return res.status(200).json({
-      message: `Review for ISBN ${isbn} successfully posted/updated.`,
+      message: "Review added/updated successfully",
       reviews: books[isbn].reviews,
     });
   } else {
@@ -100,7 +98,7 @@ regd_users.delete("/auth/review/:isbn", (req, res) => {
       delete books[isbn].reviews[username];
 
       return res.status(200).json({
-        message: `Review for ISBN ${isbn} posted by user ${username} has been successfully deleted.`,
+        message: `The review for the book with ISBN ${isbn} has been added/updated successfully.`,
         reviews: books[isbn].reviews,
       });
     } else {
